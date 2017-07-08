@@ -1,0 +1,26 @@
+{
+  "name": "weekendproject3",
+  "version": "1.0.0",
+  "description": "Weekend Project to make a todo application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bendrumin/weekendProject3.git"
+  },
+  "author": "Ben Siegel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bendrumin/weekendProject3/issues"
+  },
+  "homepage": "https://github.com/bendrumin/weekendProject3#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "jquery": "^3.2.1",
+    "pg": "^6.4.0"
+  }
+}
