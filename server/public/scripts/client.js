@@ -38,9 +38,9 @@ function appendToDom(tasks) {
     // For each book, append a new row to our table
     $tr = $('<tr></tr>');
     $tr.data('task', task);
-    $tr.append('<td>' + tasklist.item + '</td>');
+    $tr.append('<td>' + task.item + '</td>');
 
-    $tr.append('<td><button class="deleteBtn" data-taskid="' + task.id + '">Delete</button></td>');
+    $tr.append('<td><button class="completeBtn" data-taskid="' + task.id + '">Complete</button></td>');
     $('#itemList').append($tr);
   }
 }
