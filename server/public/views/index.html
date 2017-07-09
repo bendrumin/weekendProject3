@@ -4,26 +4,31 @@
     <meta charset="utf-8">
     <title>To Do</title>
     <script type="text/javascript" src="vendors/jquery.js"></script>
+    <script type="text/javascript" src="vendors/bootstrap.js"></script>
+
     <script type="text/javascript" src="scripts/client.js"></script>
+<link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/css/bootstrap.css">
     </script>
   </head>
   <body>
     <h1>To Do list</h1>
-        <h3>Add Item</h3>
-        <input type="text" size="100" name="" value="newTask" id="newTask">
-        <button type="button" id="submitBtn">Add item</button>
+        <div id="wrapper">
+        <input type="text" id="newTask">
+        <button type="button" id="submitBtn">Del</button>
         <div>
           <h3>TO DO</h3>
           <table>
             <thead>
               <tr>
-                <th>What to do</th>
-                <th>Is it done?</th>
+                <th class="notes">What to do</th>
+                <th colspan="2">Edit Task</th>
               </tr>
             </thead>
             <tbody id="itemList">
             </tbody>
           </table>
         </div>
+      </div>
   </body>
 </html>

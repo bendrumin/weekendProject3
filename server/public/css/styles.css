@@ -1,0 +1,30 @@
+body
+    {
+    font: 62.5%/1.5  "Lucida Grande", "Lucida Sans", Tahoma, Verdana, sans-serif;
+    background: url(/images/wallpaper.png) repeat;
+    color: #000000;
+    text-align:center;
+}
+
+#wrapper
+    {
+    width:980px;
+    text-align:left;
+    margin-left:auto;
+    margin-right:auto;
+    background-color: #FFFFFF;
+}
+/* Tables
+-----------------------------------------------------------------------------*/
+
+table
+  {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+td
+  {
+  text-align: left;
+  font-weight: normal;
+}

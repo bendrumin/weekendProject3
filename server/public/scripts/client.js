@@ -7,7 +7,7 @@ $(document).ready(function() {
   $( '#submitBtn' ).on( 'click', function(){
     console.log( 'in addButton on click' );
     var newTask = {}
-    task.item = $('#newTask').val();
+    newTask.item = $('#newTask').val();
     console.log(newTask);
     // call saveKoala with the new obejct
     saveTask( newTask );
@@ -81,7 +81,7 @@ function completeTask(itemid) {
     url: '/tasks/' + itemid,
     success: function(response) {
       console.log(response);
-      console.log('I deleted the koalatask');
+      console.log('I deleted the task');
 
     }
   });
