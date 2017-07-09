@@ -11,23 +11,32 @@
 <link rel="stylesheet" href="/css/bootstrap.css">
 <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
   <body>
-    <h1>To Do list</h1>
-        <div id="wrapper">
-        <input type="text" id="newTask">
-        <button type="button" id="submitBtn">Add Task</button>
-        <div>
-          <h3>TO DO</h3>
-          <table>
-            <thead>
-              <tr>
-                <th class="notes"></th>
-                <th colspan="2"></th>
-              </tr>
-            </thead>
-            <tbody id="itemList">
-            </tbody>
-          </table>
-        </div>
-      </div>
+    <div class="container">
+       <div class="innerContainer">
+         <header>
+           <h1>&#10003;</h1>
+         </header>
+         <div id="userInputDiv">
+           <input id="taskIn" type="text" placeholder="Add a task">
+           <input id="notesIn" type="text" placeholder="Add notes">
+           <button id="addButton" type="button" class="btn btn-primary">Add</button>
+         </div>
+         <div id="tasksDiv">
+           <table>
+             <thead>
+               <tr>
+                 <th>Complete</th>
+                 <th>To Do's</th>
+                 <th>Notes</th>
+                 <th>Edit</th>
+                 <th>Delete</th>
+               </tr>
+             </thead>
+             <tbody id="taskContainer">
+             </tbody>
+           </table>
+         </div>
+       </div>
+     </div>
   </body>
 </html>
