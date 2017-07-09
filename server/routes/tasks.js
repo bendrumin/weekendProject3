@@ -75,7 +75,36 @@ router.post('/', function(req, res) {
 router.delete('/:id', function(req, res){
   var id = req.params.id; // id of the thing to delete
   console.log('Delete route called with id of', id);
-
+  router.put('/', function(req, res){
+    var book = req.body; // Book with updated content
+    console.log('Put route called with book of ', book);
+      // PASTED PG CODE
+      // errorConnecting is bool, db is what we query against,
+      // done is a function that we call when we're done
+      pool.connect(function(errorConnectingToDatabase, db, done){
+        if(errorConnectingToDatabase) {
+          console.log('Error connecting to the database.');
+          res.sendStatus(500);
+        } else {
+          // We connected to the database!!!
+          // Now we're going to GET things from the db
+          var queryText = 'UPDATE "tasklist" SET "item"=$1 WHERE id=$2;';
+          // errorMakingQuery is a bool, result is an object
+          db.query(queryText, [tasklist.item, tasklist.id], function(errorMakingQuery, result){
+            done();
+            if(errorMakingQuery) {
+              console.log('Attempted to query with', queryText);
+              console.log('Error making query');
+              res.sendStatus(500);
+            } else {
+              // console.log(result);
+              // Send back the results
+              res.sendStatus(200);
+            }
+          }); // end query
+        } // end if
+      }) // end pool
+  });
   // YOUR CODE HERE
   pool.connect(function(errorConnectingToDatabase, db, done){
     if(errorConnectingToDatabase) {

@@ -13,12 +13,30 @@ $(document).ready(function() {
     saveTask( newTask );
   });
   //Task complete function
-  $('#itemList').on('click', '.completeBtn' , function(){
+  $('#itemList').on('click', '.removeBtn' , function(){
     console.log('Delete task as been hit');
     var itemid = $(this).data('itemid');
     console.log($(this));
-    console.log('Delete koala with id of', itemid);
+    console.log('Delete task with id of', itemid);
     completeTask(itemid);
+    refreshTasks();
+
+  });
+
+  //Edit doesnt work, well, it DOES but doesnt...
+  $('#itemList').on('click', '.editBtn', function(){
+    // Set editng to true, used when we submit the form
+    editingTask = true;
+    // We attached the entire book object as data to our table row
+    // $(this).parent() is the <td>
+    // $(this).parent().parent() is the <tr> that we attached our data to
+    var selectedTask = $(this).parent().parent().data('task');
+    console.log(selectedTask);
+    editingTask = selectedTask.id;
+    console.log(selectedTask.id);
+
+    // Set the form values to the thing we're editing
+    $('#newTask').val(selectedTask.id);
   });
 });
 function saveTask( newTask ){
@@ -58,7 +76,21 @@ function refreshTasks() {
   });
 
 }
+function updateTask(taskToUpdate) {
 
+  // YOUR AJAX CODE HERE
+  $.ajax({
+    type: 'PUT',
+    url: '/tasks',
+    data: taskToUpdate,
+    success: function(response) {
+      console.log(response);
+      console.log(taskToUpdate);
+      refreshTasks();
+
+    }
+  });
+}
 function appendToDom(tasks) {
   console.log('List Append Working');
   // Remove tasks that currently exist in the table
@@ -69,8 +101,9 @@ function appendToDom(tasks) {
     $tr = $('<tr></tr>');
     $tr.data('task', task);
     $tr.append('<td class="itemDesc">' + task.item + '</td>');
+    $tr.append('<td><button class="editBtn btn btn-info btn-lg disabled data-itemid="' + task.id + '"><span class="glyphicon glyphicon-edit"></span></button></td>');
 
-    $tr.append('<td><button class="completeBtn" data-itemid="' + task.id + '">Complete</button></td>');
+    $tr.append('<td><button class="removeBtn btn btn-danger btn-lg   data-itemid="' + task.id + '"><i class="icon-remove-circle fa-4x"></i></button></td>');
     $('#itemList').append($tr);
   }
 }
@@ -82,6 +115,7 @@ function completeTask(itemid) {
     success: function(response) {
       console.log(response);
       console.log('I deleted the task');
+      refreshTasks();
 
     }
   });
