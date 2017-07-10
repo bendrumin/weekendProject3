@@ -7,7 +7,7 @@ $(document).ready(function() {
 
   $('#tasksDiv').on('click', '.status', markedComplete);
   $('#addButton').click(function() {
-   $('#myModal').modal('hide');
+   $('#addModal').modal('hide');
 });
 $('delete').click(function() {
   $('#myModal').modal('hide');
