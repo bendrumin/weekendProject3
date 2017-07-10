@@ -4,10 +4,14 @@ $(document).ready(function() {
   getTasks();
   $('#addButton').on('click', addTask);
   $('#tasksDiv').on('click', '.delete', deleteTask);
+
   $('#tasksDiv').on('click', '.status', markedComplete);
   $('#addButton').click(function() {
    $('#myModal').modal('hide');
 });
+$('delete').click(function() {
+  $('#myModal').modal('hide');
+})
 });//end onready
 
 //GET tasks stored in db to display on DOM
@@ -56,8 +60,6 @@ function deleteTask() {
   console.log($(this).parent().parent().data('singleId'));
   var taskId = $(this).parent().parent().data('singleId');
   //trigger alert for user to verify delete
-  var answer = confirm("Delete this task?");
-    if (answer) {
       $.ajax({
         type: 'DELETE',
         url: '/tasks',
@@ -70,9 +72,7 @@ function deleteTask() {
         }//end success
         });//end DELETE
         getTasks();
-    } else{
-        return false;
-      }//end if
+
 }//end deleteTask
 $( function() {
     $( "#taskContainer" ).sortable();
@@ -125,7 +125,7 @@ function displayOnDom(taskTable) {
     $tr.append('<td>' + singleTask + '</td>');
     $tr.append('<td>' + singleNote + '</td>');
     $tr.append('<td class="actionButton"><button class="editbtn disabled btn btn-info " data-id="' + singleId + '"><span class="glyphicon glyphicon-edit"></span></button></td>');
-    $tr.append('<td class="actionButton"><button class="delete btn btn-info" data-id="' + singleId + '"><span class="glyphicon glyphicon-trash"></span></button></td>');
+    $tr.append('<td class="actionButton"><button data-toggle="modal" data-target="#myModal" class="delete btn btn-info" data-id="' + singleId + '"><span class="glyphicon glyphicon-trash"></span></button></td>');
     $('#taskContainer').append($tr);
   }//end for
 }//end displayOnDom
