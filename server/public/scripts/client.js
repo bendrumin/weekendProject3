@@ -7,11 +7,11 @@ $(document).ready(function() {
 
   $('#tasksDiv').on('click', '.status', markedComplete);
   $('#addButton').click(function() {
-   $('#addModal').modal('hide');
-});
-$('delete').click(function() {
-  $('#myModal').modal('hide');
-})
+    $('#addModal').modal('hide');
+  });
+  $('delete').click(function() {
+    $('#myModal').modal('hide');
+  });
 });//end onready
 
 //GET tasks stored in db to display on DOM
@@ -36,23 +36,23 @@ function addTask() {
   var taskNotes = $('#newNote').val();
   console.log(newTask);
   //check if input fields are empty, ifos propmt user to fill them
-    $.ajax({
-      type: 'POST',
-      url: '/tasks',
-      data: {
-        newTask: newTask,
-        complete: false,
-        notes: taskNotes
-      },
-      //on success...
-      success: function(response) {
-        //confirm success through logging message
-        console.log('task sent to server: ' + response);
-        getTasks();
-        $('#newTask').val('');
-        $('#newNote').val('');
-      }//end success
-    });//end POST
+  $.ajax({
+    type: 'POST',
+    url: '/tasks',
+    data: {
+      newTask: newTask,
+      complete: false,
+      notes: taskNotes
+    },
+    //on success...
+    success: function(response) {
+      //confirm success through logging message
+      console.log('task sent to server: ' + response);
+      getTasks();
+      $('#newTask').val('');
+      $('#newNote').val('');
+    }//end success
+  });//end POST
 }//end addTask
 
 //request to delete a task from the db
@@ -60,24 +60,24 @@ function deleteTask() {
   console.log($(this).parent().parent().data('singleId'));
   var taskId = $(this).parent().parent().data('singleId');
   //trigger alert for user to verify delete
-      $.ajax({
-        type: 'DELETE',
-        url: '/tasks',
-        data: {
-          taskId: taskId
-        },
-        success: function(response) {
-          console.log('Deleted task with id: ' + taskId + '');
-          getTasks();
-        }//end success
-        });//end DELETE
-        getTasks();
+  $.ajax({
+    type: 'DELETE',
+    url: '/tasks',
+    data: {
+      taskId: taskId
+    },
+    success: function(response) {
+      console.log('Deleted task with id: ' + taskId + '');
+      getTasks();
+    }//end success
+  });//end DELETE
+  getTasks();
 
 }//end deleteTask
 $( function() {
-    $( "#taskContainer" ).sortable();
-    $( "#taskContainer" ).disableSelection();
-  } );
+  $( "#taskContainer" ).sortable();
+  $( "#taskContainer" ).disableSelection();
+} );
 //change completion status of a task
 function markedComplete() {
   var status = $(this)[0].checked;
@@ -91,10 +91,10 @@ function markedComplete() {
     console.log('task added');
     alert('Task has been marked complete!');
   }
-    else {
-      $(this).parent().parent().removeClass('statusComplete');
-      status = false;
-      $('#taskContainer').prepend(task);
+  else {
+    $(this).parent().parent().removeClass('statusComplete');
+    status = false;
+    $('#taskContainer').prepend(task);
   }//end if
   $.ajax({
     type: 'PUT',
