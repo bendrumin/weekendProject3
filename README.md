@@ -2,6 +2,7 @@
 
 Notes: Adding the dragable option does NOT change it in the database
        Maybe add an alert from bootstrap when item is complete.
+       Dragable doesnt update the ID, only makes it look cool.
 
 [X] Put server stuff up
 [X] Get server stuff working

@@ -77,3 +77,6 @@ margin: 10px 0;
 .modal-title {
   float: left;
 }
+.taskRow.ui-sortable-helper {
+  background-color: #ccc;
+}
