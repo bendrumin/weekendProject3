@@ -1,9 +1,11 @@
 header {
   width: 100%;
+  margin-bottom: 50px;
 }
 
 
 h1 {
+border-bottom: 1px solid #EEEEEE;
 
 }
 input {
@@ -16,7 +18,7 @@ input {
 }
 
 .innerContainer {
-  width: 60%;
+  width: 80%;
   margin: 0 auto;
   padding: 20px;
 }
@@ -41,11 +43,11 @@ table {
     padding: 5px;
 }
 
-td.actionButton {
+.actionButton {
     width: 20px;
 }
 td.completeBox {
-    width: 50px;
+    width: 100px;
     text-align: center;
     vertical-align: middle;
 }
@@ -57,14 +59,21 @@ tr.taskRow.statusComplete {
 tr th {
     padding: 5px;
 }
+th {
+  font-size: 18px;
+  border-bottom: 1px solid black;
+
+}
 tr.taskRow {
-  background-color:#F9F9F9;
-border:1px solid #EEEEEE;
-position:relative;
--moz-border-radius:6px;
--webkit-border-radius:6px;
-border-radius:6px;
+  border-bottom: 1px solid #EEEEEE;
+  position: relative;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
 }
 tr td {
 margin: 10px 0;
+}
+.modal-title {
+  float: left;
 }

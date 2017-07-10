@@ -165,7 +165,6 @@ router.put('/', function(req, res) {
         console.log('connected to db!');
         // query to change status in db
           if(status == 'true') {
-            console.log('bug');
             var queryText = 'UPDATE "tasks" SET "complete" = true WHERE "id" = $1;';
             // execute query
             db.query(queryText, [taskId], function(errorQuery, result){

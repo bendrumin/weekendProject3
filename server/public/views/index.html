@@ -1,42 +1,69 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>To Do</title>
-    <script type="text/javascript" src="vendors/jquery.js"></script>
-    <script type="text/javascript" src="vendors/bootstrap.js"></script>
-
-    <script type="text/javascript" src="scripts/client.js"></script>
-<link rel="stylesheet" href="/css/styles.css">
-<link rel="stylesheet" href="/css/bootstrap.css">
-<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+<head>
+  <meta charset="utf-8">
+  <title>To Do</title>
+  <script type="text/javascript" src="vendors/jquery.js"></script>
+  <script type="text/javascript" src="vendors/bootstrap.js"></script>
+  <script type="text/javascript" src="scripts/client.js"></script>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/bootstrap.css">
   <body>
     <div class="container">
-       <div class="innerContainer">
-         <header>
-           <h1>&#10003;</h1>
-         </header>
-         <div id="userInputDiv">
-           <input id="taskIn" type="text" placeholder="Add a task">
-           <input id="notesIn" type="text" placeholder="Add notes">
-           <button id="addButton" type="button" class="btn btn-primary">Add</button>
-         </div>
-         <div id="tasksDiv">
-           <table>
-             <thead>
-               <tr>
-                 <th>Complete</th>
-                 <th>To Do's</th>
-                 <th>Notes</th>
-                 <th>Edit</th>
-                 <th>Delete</th>
-               </tr>
-             </thead>
-             <tbody id="taskContainer">
-             </tbody>
-           </table>
-         </div>
-       </div>
-     </div>
-  </body>
+      <div class="innerContainer">
+        <header>
+          <h1>What <i>ToDo</i>, what <i>todo</i></h1>
+        </header>
+        <!--Back up for inputs incase they break -->
+        <!--<div id="userInputDiv">
+        <input id="newTask" type="text" placeholder="Add a task">
+        <input id="newNote" type="text" placeholder="Add notes">
+        <button id="addButton" type="button" class="btn btn-primary">Add</button>
+      </div>-->
+      <button type="button" class="btn btn-primary btn-med" data-toggle="modal" data-target="#myModal">Add a task</button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add a task</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <div class="form-group">
+                <input id="newTask" type="text" class="form-control" placeholder="Add a task">
+              </div>
+              <div class="form-group">
+                <input id="newNote" type="text" class="form-control" placeholder="Add notes">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" id="addButton" class="btn btn-primary">Add task</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="tasksDiv">
+        <table>
+          <thead>
+            <tr>
+              <th>Complete</th>
+              <th>To Do's</th>
+              <th>Notes</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody id="taskContainer">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
 </html>

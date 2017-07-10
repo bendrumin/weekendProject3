@@ -5,6 +5,9 @@ $(document).ready(function() {
   $('#addButton').on('click', addTask);
   $('#tasksDiv').on('click', '.delete', deleteTask);
   $('#tasksDiv').on('click', '.status', markedComplete);
+  $('#addButton').click(function() {
+   $('#myModal').modal('hide');
+});
 });//end onready
 
 //GET tasks stored in db to display on DOM
@@ -25,15 +28,10 @@ function getTasks() {
 //send a new task to the server to POST in db
 function addTask() {
   //retrieve user input and format as obj
-  var newTask = $('#taskIn').val();
-  var taskNotes = $('#notesIn').val();
+  var newTask = $('#newTask').val();
+  var taskNotes = $('#newNote').val();
   console.log(newTask);
   //check if input fields are empty, ifos propmt user to fill them
-  if($('#taskIn').val() === '') {
-    alert('Be sure to add your task!');
-  }
-  else {
-    //send task obj to server
     $.ajax({
       type: 'POST',
       url: '/tasks',
@@ -47,11 +45,10 @@ function addTask() {
         //confirm success through logging message
         console.log('task sent to server: ' + response);
         getTasks();
-        $('#taskIn').val('');
-        $('#notesIn').val('');
+        $('#newTask').val('');
+        $('#newNote').val('');
       }//end success
     });//end POST
-  }//end if
 }//end addTask
 
 //request to delete a task from the db
@@ -59,7 +56,7 @@ function deleteTask() {
   console.log($(this).parent().parent().data('singleId'));
   var taskId = $(this).parent().parent().data('singleId');
   //trigger alert for user to verify delete
-  var answer = confirm("Are you sure?");
+  var answer = confirm("Delete this task?");
     if (answer) {
       $.ajax({
         type: 'DELETE',
@@ -68,7 +65,7 @@ function deleteTask() {
           taskId: taskId
         },
         success: function(response) {
-          console.log('Deleted task with id: ' + taskId + ' from the db');
+          console.log('Deleted task with id: ' + taskId + '');
           getTasks();
         }//end success
         });//end DELETE
