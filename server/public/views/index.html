@@ -14,79 +14,81 @@
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="stylesheet" href="/css/bootstrap.css">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <body>
     <div class="container">
-      <div class="innerContainer">
         <header>
           <h1>What <i>ToDo</i>, what <i>todo</i></h1>
         </header>
 
-      <!-- Start Delete modal -->
+        <!-- Start Delete modal -->
 
-      <div id="myModal" class="modal fade">
-  <div class="modal-dialog modal-sm" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Task Delete</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>This task has now been deleted</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Okay</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- End delete modal -->
-      <button type="button" class="btn btn-primary btn-med" data-toggle="modal" data-target="#myModal">Add a task</button>
-
-      <!-- Modal -->
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Add a task</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-
-              <div class="form-group">
-                <input id="newTask" type="text" class="form-control" placeholder="Add a task">
+        <div id="myModal" class="modal fade">
+          <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Task Delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
-              <div class="form-group">
-                <input id="newNote" type="text" class="form-control" placeholder="Add notes">
+              <div class="modal-body">
+                <p>This task has now been deleted</p>
               </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" id="addButton" class="btn btn-primary">Add task</button>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Okay</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div id="tasksDiv">
-        <table>
-          <thead>
-            <tr>
-              <th>Complete</th>
-              <th>To Do's</th>
-              <th>Notes</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody id="taskContainer">
-          </tbody>
-        </table>
-      </div>
+
+        <!-- End delete modal -->
+        <button type="button" class="btn btn-primary btn-med" data-toggle="modal" data-target="#myModal">Add a task</button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add a task</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+
+                <div class="form-group">
+                  <input id="newTask" type="text" class="form-control" placeholder="Add a task">
+                </div>
+                <div class="form-group">
+                  <input id="newNote" type="text" class="form-control" placeholder="Add notes">
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="addButton" class="btn btn-primary">Add task</button>
+              </div>
+            </div>
+          </div>
+        </div>
+<!--End of new task Modal -->
+<div class="row"
+        <div id="tasksDiv">
+          <table>
+            <thead>
+              <tr>
+                <th>Complete</th>
+                <th>To Do's</th>
+                <th>Notes</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody id="taskContainer">
+            </tbody>
+          </table>
+        </div>
     </div>
-  </div>
-</body>
-</html>
+  </body>
+  </html>
