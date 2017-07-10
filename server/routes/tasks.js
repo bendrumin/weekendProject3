@@ -21,7 +21,7 @@ router.get('/', function(req, res){
     } else {
       console.log('connected to db!');
       //query to retrieve all tasks from the db
-      var queryText = 'SELECT * FROM "tasks";';
+      var queryText = 'SELECT * FROM "tasks" ORDER BY "id" DESC;';
       // execute query
       db.query(queryText, function(errorQuery, result){
         done();

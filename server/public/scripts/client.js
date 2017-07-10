@@ -74,7 +74,10 @@ function deleteTask() {
         return false;
       }//end if
 }//end deleteTask
-
+$( function() {
+    $( "#taskContainer" ).sortable();
+    $( "#taskContainer" ).disableSelection();
+  } );
 //change completion status of a task
 function markedComplete() {
   var status = $(this)[0].checked;
