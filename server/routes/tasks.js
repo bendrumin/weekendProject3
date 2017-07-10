@@ -1,14 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var pg = require('pg');
-var config = {
-  database: 'antares', // name of db
-  host: 'localhost', // host for db
-  port: 5432, // default port for Postico db
-  max: 10, // max simultaneous connections allowed
-  idleTimeoutMillis: 30000 // 30 seconds connection attempt
-};
-var pool = new pg.Pool(config);
+var poolModule = require('../modules/pool.js');
+var pool = poolModule;
 
 // request to retrieve tasks from db
 router.get('/', function(req, res){
@@ -113,7 +107,7 @@ router.delete('/', function(req, res) {
     } // end if
   }); // end pool
 }); // end DELETE
-//request to delete task from db
+//request to edit task from db
 router.connect('/', function(req, res) {
   //verify task id sent from client based on 'delete' click
   var taskId = req.body.taskId;
