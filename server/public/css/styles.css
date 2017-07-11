@@ -56,24 +56,7 @@ tr.taskRow.statusComplete {
     border-color: #d0e9c6;
     color: #3c763d;
 }
-tr th {
-    padding: 5px;
-}
-th {
-  font-size: 18px;
-  border-bottom: 1px solid black;
 
-}
-tr.taskRow {
-  border-bottom: 1px solid #EEEEEE;
-  position: relative;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
-}
-tr td {
-margin: 10px 0;
-}
 .modal-title {
   float: left;
 }
