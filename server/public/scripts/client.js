@@ -12,6 +12,9 @@ $(document).ready(function() {
   $('delete').click(function() {
     $('#myModal').modal('hide');
   });
+  $('.editBtn').click(function() {
+    $('#editModal').modal('hide');
+  });
 });//end onready
 
 //GET tasks stored in db to display on DOM
@@ -54,7 +57,31 @@ function addTask() {
     }//end success
   });//end POST
 }//end addTask
-
+//send a new task to the server to POST in db
+function updateTask() {
+  //retrieve user input and format as obj
+  var editTask = $('#editTask').val();
+  var editNote = $('#editNote').val();
+  console.log(editTask);
+  //check if input fields are empty, ifos propmt user to fill them
+  $.ajax({
+    type: 'PUT',
+    url: '/tasks',
+    data: {
+      taskId: taskId,
+      editTask: editTask,
+      editNote: editNote
+    },
+    //on success...
+    success: function(response) {
+      //confirm success through logging message
+      console.log('taskEdit sent to server: ' + response);
+      getTasks();
+      $('#editTask').val('');
+      $('#editNote').val('');
+    }//end success
+  });//end POST
+}//end addTask
 //request to delete a task from the db
 function deleteTask() {
   console.log($(this).parent().parent().data('singleId'));
@@ -122,9 +149,9 @@ function displayOnDom(taskTable) {
     // var $td = $('<td></td>');
     $tr.data('singleId', singleId);
     $tr.append('<td class="completeBox"><input type="checkbox" class="status" data-id="' + singleId + '"></td>');
-    $tr.append('<td>' + singleTask + '</td>');
-    $tr.append('<td>' + singleNote + '</td>');
-    $tr.append('<td class="actionButton"><button class="editbtn disabled btn btn-info " data-id="' + singleId + '"><span class="glyphicon glyphicon-edit"></span></button></td>');
+    $tr.append('<td class="taskName">' + singleTask + '</td>');
+    $tr.append('<td class="taskNote">' + singleNote + '</td>');
+    $tr.append('<td class="actionButton"><button class="editbtn btn btn-info disabled " data-toggle="modal" data-target="#editModal" data-id="' + singleId + '"><span class="glyphicon glyphicon-edit"></span></button></td>');
     $tr.append('<td class="actionButton"><button data-toggle="modal" data-target="#myModal" class="delete btn btn-info" data-id="' + singleId + '"><span class="glyphicon glyphicon-trash"></span></button></td>');
     $('#taskContainer').append($tr);
   }//end for

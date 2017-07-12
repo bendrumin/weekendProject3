@@ -44,6 +44,32 @@
         </div>
 
         <!-- End delete modal -->
+        <!-- Start Edit modal -->
+
+        <div id="editModal" class="modal fade">
+          <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Task Edit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <input id="editTask" type="text" class="form-control" placeholder="Edit a task">
+                </div>
+                <div class="form-group">
+                  <input id="editNote" type="text" class="form-control" placeholder="Edit notes">
+                </div>              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Okay</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- End delete modal -->
         <button type="button" class="btn btn-primary btn-med" data-toggle="modal" data-target="#addModal">Add a task</button>
 
         <!-- Modal -->
@@ -66,7 +92,7 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="editButton" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" id="addButton" class="btn btn-primary">Add task</button>
               </div>
             </div>

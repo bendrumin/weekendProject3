@@ -108,10 +108,11 @@ router.delete('/', function(req, res) {
   }); // end pool
 }); // end DELETE
 //request to edit task from db
-router.connect('/', function(req, res) {
-  //verify task id sent from client based on 'delete' click
-  var taskId = req.body.taskId;
+router.put('/', function(req, res) {
   console.log(taskId);
+  var task = req.body.editTask;
+  var complete = req.body.complete;
+  var notes = req.body.notes;
   // connect to pool
   pool.connect(function(errorConnect, db, done){
     // if error connecting...
@@ -122,9 +123,9 @@ router.connect('/', function(req, res) {
     } else {
       console.log('Data connected');
       // query to delete a task from the db
-      var queryText = 'UPDATE "tasks" SET ("task", "complete", "notes");';
+      var queryText = 'UPDATE "tasks" SET "task" =$1, "complete" = $2, "notes"= $3 WHERE "id" = $4;';
       // execute query
-      db.query(queryText, [tasks.task, tasks.complete, tasks.notes], function(errorQuery, result){
+      db.query(queryText, [tasks.task, tasks.complete, tasks.notes, req.params.id], function(errorQuery, result){
         // disconnect from pool after query is executed
         done();
         // if query fails...
@@ -142,63 +143,66 @@ router.connect('/', function(req, res) {
   }); // end pool
 }); // end DELETE
 
-//request to change completion status of task in db
-router.put('/', function(req, res) {
-  //verify id of task status being changed
-  var taskId = req.body.taskId;
-  var status = req.body.status;
-  console.log(req.body);
-  // connect to pool
-  pool.connect(function(errorConnect, db, done){
-    // if error connecting...
-    if(errorConnect) {
-      console.log('Error connecting to the database.');
-      res.sendStatus(500); // internal server error
-      // if connect successful...
+//request to edit task in db
+router.put('/:id', function(req, res){
+  console.log('Edit has been hit');
+  var tasks = req.body; //Task of thing to delete
+  console.log('put routed called id of', id);
+  pool.connect(function(errorConnectingToDatabase, db, done){
+    if(errorConnectingToDatabase) {
+      console.log('Error connecting to the database'); //Sends error code
+      res.sendStatus(500);//Sends a 500 status
     } else {
-        console.log('connected to db!');
-        // query to change status in db
-          if(status == 'true') {
-            var queryText = 'UPDATE "tasks" SET "complete" = true WHERE "id" = $1;';
-            // execute query
-            db.query(queryText, [taskId], function(errorQuery, result){
-              // disconnect from pool after query is executed
-              done();
-            // if query fails...
-            if(errorQuery) {
-              console.log('Attempted to query with', queryText);
-              console.log('Error making query');
-              res.sendStatus(500); // internal server error
-              // if query is successful...
-            } else {
-              // Send back success message
-              console.log('Changed status');
-              res.send({message: 'changed status to true'});
-              }
-            });//end query
-          }//end if true
-
-          else if(status == 'false') {
-            var otherQueryText = 'UPDATE "tasks" SET "complete" = false WHERE "id" = $1;';
-            // execute query
-            db.query(otherQueryText, [taskId], function(errorQuery, result){
-              // disconnect from pool after query is executed
-              done();
-              // if query fails...
-              if(errorQuery) {
-                console.log('Attempted to query with', queryText);
-                console.log('Error making query');
-                res.sendStatus(500); // internal server error
-                // if query is successful...
-              } else {
-                // Send back success message
-                console.log('Changed status');
-                res.send({message: 'changed status to false'});
-              }
-            });//end query
-            }//end else false
-          }//end else connected
-    });//end pool
+      //We connected, now we GET things
+      var queryText = 'UPDATE "tasks" SET "task" =$1, "notes"= $2 WHERE "id" = $3;';
+      console.log(req.params); //Allows you to see what you are bringing in
+      console.log(req.body);
+      var task = req.body;
+      //ONLY THING YOU WOULD HAVE TO change
+      db.query(queryText, [tasks.editTask, tasks.editNote, tasks.taskId], function(errorMakingQuery, result){
+        done(); //Call the function when your done (closes connection)
+        //console.log(result);
+        if(errorMakingQuery){ //errorMakingQuery is a bool, result is an object
+          console.log('Attempted to query with', queryText);
+          console.log('Error making query');
+          res.sendStatus(500);
+        } else {
+          // Send back results of the query
+          res.sendStatus(200);
+        }
+      }); //end query
+    } // end if
+  }) // end pool
+});//end PUT
+//request to change completion status of task in db
+router.put('/:id', function(req, res){
+  var id = req.params.id; //id of thing to delete
+  console.log('put routed called id of', id);
+  pool.connect(function(errorConnectingToDatabase, db, done){
+    if(errorConnectingToDatabase) {
+      console.log('Error connecting to the database'); //Sends error code
+      res.sendStatus(500);//Sends a 500 status
+    } else {
+      //We connected, now we GET things
+      var queryText = 'UPDATE "tasks" SET "task" =$1, "complete" = $2, "notes"= $3 WHERE "id" = $4;';
+      console.log(req.params); //Allows you to see what you are bringing in
+      console.log(req.body);
+      var task = req.body;
+      //ONLY THING YOU WOULD HAVE TO change
+      db.query(queryText, [tasks.task, tasks.complete, tasks.notes], function(errorMakingQuery, result){
+        done(); //Call the function when your done (closes connection)
+        //console.log(result);
+        if(errorMakingQuery){ //errorMakingQuery is a bool, result is an object
+          console.log('Attempted to query with', queryText);
+          console.log('Error making query');
+          res.sendStatus(500);
+        } else {
+          // Send back results of the query
+          res.sendStatus(200);
+        }
+      }); //end query
+    } // end if
+  }) // end pool
 });//end PUT
 
 module.exports = router;
