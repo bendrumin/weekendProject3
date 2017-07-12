@@ -108,8 +108,10 @@ router.delete('/', function(req, res) {
   }); // end pool
 }); // end DELETE
 //request to edit task from db
-router.put('/', function(req, res) {
+router.put('/edit', function(req, res) {
   console.log(taskId);
+  var taskId = req.body.taskId;
+
   var task = req.body.editTask;
   var complete = req.body.complete;
   var notes = req.body.notes;
@@ -125,7 +127,7 @@ router.put('/', function(req, res) {
       // query to delete a task from the db
       var queryText = 'UPDATE "tasks" SET "task" =$1, "complete" = $2, "notes"= $3 WHERE "id" = $4;';
       // execute query
-      db.query(queryText, [tasks.task, tasks.complete, tasks.notes, req.params.id], function(errorQuery, result){
+      db.query(queryText, [task, complete, notes, taskId], function(errorQuery, result){
         // disconnect from pool after query is executed
         done();
         // if query fails...

@@ -4,6 +4,7 @@ $(document).ready(function() {
   getTasks();
   $('#addButton').on('click', addTask);
   $('#tasksDiv').on('click', '.delete', deleteTask);
+  $('#edit').on('click', updateTask);
 
   $('#tasksDiv').on('click', '.status', markedComplete);
   $('#addButton').click(function() {
@@ -62,11 +63,13 @@ function updateTask() {
   //retrieve user input and format as obj
   var editTask = $('#editTask').val();
   var editNote = $('#editNote').val();
-  console.log(editTask);
+  var taskId = $(this).parent().parent().data('singleId');
+
+  console.log(editTask, editNote, taskId);
   //check if input fields are empty, ifos propmt user to fill them
   $.ajax({
     type: 'PUT',
-    url: '/tasks',
+    url: '/tasks/edit',
     data: {
       taskId: taskId,
       editTask: editTask,
@@ -82,6 +85,8 @@ function updateTask() {
     }//end success
   });//end POST
 }//end addTask
+getTasks();
+
 //request to delete a task from the db
 function deleteTask() {
   console.log($(this).parent().parent().data('singleId'));
@@ -151,7 +156,7 @@ function displayOnDom(taskTable) {
     $tr.append('<td class="completeBox"><input type="checkbox" class="status" data-id="' + singleId + '"></td>');
     $tr.append('<td class="taskName">' + singleTask + '</td>');
     $tr.append('<td class="taskNote">' + singleNote + '</td>');
-    $tr.append('<td class="actionButton"><button class="editbtn btn btn-info disabled " data-toggle="modal" data-target="#editModal" data-id="' + singleId + '"><span class="glyphicon glyphicon-edit"></span></button></td>');
+    $tr.append('<td class="actionButton"><button data-toggle="modal" data-target="#editModal" class="editbtn btn btn-info disabled" data-id="' + singleId + '"><span class="glyphicon glyphicon-edit"></span></button></td>');
     $tr.append('<td class="actionButton"><button data-toggle="modal" data-target="#myModal" class="delete btn btn-info" data-id="' + singleId + '"><span class="glyphicon glyphicon-trash"></span></button></td>');
     $('#taskContainer').append($tr);
   }//end for
