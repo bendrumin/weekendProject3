@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/bendrumin/weekendProject3#readme",
   "dependencies": {
+    "angular-xeditable": "^0.8.0",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "jquery": "^3.2.1",

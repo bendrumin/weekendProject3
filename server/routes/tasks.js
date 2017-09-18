@@ -178,7 +178,7 @@ router.put('/:id', function(req, res){
 });//end PUT
 //request to change completion status of task in db
 router.put('/:id', function(req, res){
-  var id = req.params.id; //id of thing to delete
+  var id = req.body; //id of thing to delete
   console.log('put routed called id of', id);
   pool.connect(function(errorConnectingToDatabase, db, done){
     if(errorConnectingToDatabase) {
