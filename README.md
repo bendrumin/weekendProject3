@@ -1,4 +1,4 @@
-###What todo What todo
+### What todo What todo
 This is a simple todo app built with the SEAN stack.  It has the usual todo tasks, one can add a task, and delete a task.  The user can also drag and drop the task to rearrange it.
 
 Getting Started
@@ -8,18 +8,18 @@ Run
 npm install
 ```
 
-Prerequisites
+##### Prerequisites
 
 Node and NPM have to be installed
 
-Installing
+##### Installing
 
 Open a command prompt within the cloned repo, and type:
 
 ```
 npm install --save
 ```
-Built With
+##### Built With
 
 - postsql
 - express
@@ -27,12 +27,13 @@ Built With
 - node.js
 
 
-###Authors
+##### Authors
+Ben Siegel
 
-License
+#### License
 
 This project is licensed under the MIT License - see the LICENSE.md file for details
 
-Acknowledgments
+##### Acknowledgments
 
 Prime Acamdemy staff for being awesome and very supportive.
